@@ -22,13 +22,11 @@ public class HashMap<K,V> implements Map<K,V>{
         if(isTableFull()){
             this.table = resize(table);
         }
-
-        if (table[index] == null || table[index].isDeleted()) {
+        if (table[index] == null || table[index].isDeleted() || table[index].getKey() == key) {
             table[index] = new Pair<K, V>(key, value);
-
             return value;
         }
-        for (int i = index + 1; i != index; i++){
+        for (int i = index; i != index; i++){
             if ((table[i] == null || table[i].isDeleted()) || table[i].getKey() == key) {
                 table[i] = new Pair<K, V>(key, value);
                 return value;
