@@ -6,9 +6,6 @@ package com.ovenko;
 public class MainClass {
 
     public static void main(String[] args) {
-        String n = "16";
-
-
 
         Map<Integer, Long> map = new HashMap<Integer, Long>();
         map.put(5, 89L);
