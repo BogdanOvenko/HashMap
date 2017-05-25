@@ -23,25 +23,27 @@ public class HashMap<K,V> implements Map<K,V>{
     }
 
     public V put(K key, V value) {
+        V thisValue;
         int index = tableIndex(key);
         if(isTableFull()){this.table = resize(table);}
+        if ((thisValue = addInPosition(index, key, value)) != null){
+            return thisValue;
+        }
+        for (int i = index + 1 ; i != index; i++) {
+            if ((thisValue = addInPosition(i, key, value)) != null){
+                return thisValue;
+            }
+        }
+        return null;
+    }
+    private V addInPosition(int index, K key, V value){
         if (table[index] == null) {
             table[index] = new Pair<K, V>(key, value);
-            size++;
+            this.size++;
             return value;
         }else if(table[index].getKey() == key){
             table[index] = new Pair<K, V>(key, value);
             return value;
-        }
-        for (int i = index + 1 ; i != index; i++){
-            if (table[i] == null){
-                table[i] = new Pair<K, V>(key, value);
-                size++;
-                return value;
-            } else if (table[i].getKey() == key){
-                table[i] = new Pair<K, V>(key, value);
-                return value;
-            }
         }
         return null;
     }
@@ -72,6 +74,8 @@ public class HashMap<K,V> implements Map<K,V>{
         }
         return newTable;
     }
+
+
 
     private boolean isTableFull(){
         return size >= table.length * loadFactor;
