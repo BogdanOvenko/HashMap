@@ -8,26 +8,37 @@ public class HashMap<K,V> implements Map<K,V>{
     private Pair<K,V>[] table;
     private float loadFactor = 0.75f;
     private int size = 0;
+    private final int DEFAULT_CAPACITY = 16;
 
     public HashMap() {
-        table = new Pair[16];
+        table = new Pair[DEFAULT_CAPACITY];
     }
 
     public HashMap(int capacity) {
+        if(capacity <= DEFAULT_CAPACITY){
+            table = new Pair[DEFAULT_CAPACITY];
+        } else {
         table = new Pair[capacity];
+        }
     }
 
     public V put(K key, V value) {
         int index = tableIndex(key);
-        if(isTableFull()){
-            this.table = resize(table);
-        }
-        if (table[index] == null || table[index].isDeleted() || table[index].getKey() == key) {
+        if(isTableFull()){this.table = resize(table);}
+        if (table[index] == null) {
+            table[index] = new Pair<K, V>(key, value);
+            size++;
+            return value;
+        }else if(table[index].getKey() == key){
             table[index] = new Pair<K, V>(key, value);
             return value;
         }
-        for (int i = index; i != index; i++){
-            if ((table[i] == null || table[i].isDeleted()) || table[i].getKey() == key) {
+        for (int i = index + 1 ; i != index; i++){
+            if (table[i] == null){
+                table[i] = new Pair<K, V>(key, value);
+                size++;
+                return value;
+            } else if (table[i].getKey() == key){
                 table[i] = new Pair<K, V>(key, value);
                 return value;
             }

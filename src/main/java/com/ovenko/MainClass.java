@@ -16,7 +16,27 @@ public class MainClass {
         map.put(7, 11L);
         map.put(8, 75L);
         map.put(6, 1L);
+        map.put(33, 1L);
+        map.put(11, 1L);
+        map.put(12, 1L);
+        map.put(13, 1L);
+        map.put(14, 1L);
+        map.put(15, 1L);
+        map.put(16, 1L);
+        map.put(17, 1L);
+        map.put(18, 1L);
+        map.put(19, 1L);
+        map.put(20, 1L);
+        map.put(21, 1L);
+        map.put(22, 1L);
+        map.put(23, 1L);
+        map.put(24, 1L);
+        map.put(26, 1L);
+        map.put(27, 1L);
+        map.put(28, 1L);
+        map.put(29, 1L);
+        map.put(30, 1L);
 
-        System.out.println(map.get(1));
+        System.out.println(map.get(6) + " " + map.size());
     }
 }
