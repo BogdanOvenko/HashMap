@@ -1,20 +1,15 @@
-import com.ovenko.HashMap;
+import com.hashmap.HashMap;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-
-
-/**
- * Created by Bogdan on 25.05.2017.
- */
 public class HashMapTest {
 
-    private HashMap<Integer, Long> hashMap;
+    private HashMap hashMap;
 
     @Before
     public void init() {
-        hashMap = new HashMap<Integer, Long>();
+        hashMap = new HashMap();
     }
 
     @Test
@@ -57,19 +52,13 @@ public class HashMapTest {
     }
 
     @Test
-    public void sizeWithSomeNumberOfIdenticalKeysTest(){
-        hashMap.put(12, 62L);
+    public void sizeWithTwoNumberOfIdenticalKeysTest(){
         hashMap.put(1, 13L);
         hashMap.put(3, 15L);
-        hashMap.put(9, 16L);
-        hashMap.put(1, 27L);
         hashMap.put(12, 44L);
-        int expected = 4;
+        hashMap.put(1, 27L);
+        int expected = 3;
         Assert.assertEquals(expected, hashMap.size());
     }
-
-    /*@Test
-    public void*/
-
 
 }
