@@ -61,4 +61,19 @@ public class HashMapTest {
         Assert.assertEquals(expected, hashMap.size());
     }
 
+    @Test
+    public void putNullKeyTest(){
+        Assert.assertEquals(null, hashMap.put(null, 6L));
+    }
+
+    @Test
+    public void putNullValueTest(){
+        Assert.assertEquals(null, hashMap.put(5, null));
+    }
+
+    @Test
+    public void getNullKeyTest(){
+        Assert.assertEquals(null, hashMap.get(null));
+    }
+
 }

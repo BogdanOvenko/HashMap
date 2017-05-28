@@ -1,5 +1,7 @@
 package com.hashmap;
 
+import java.util.Arrays;
+
 public class HashMap implements Map<Integer, Long> {
 
     private Pair[] table;
@@ -20,7 +22,7 @@ public class HashMap implements Map<Integer, Long> {
     }
 
     public Long put(Integer key, Long value) {
-
+        if (key == null || value == null) return null;
         int index = tableIndex(key);
         if (isTableFull()) {
             resize();
@@ -37,8 +39,9 @@ public class HashMap implements Map<Integer, Long> {
     }
 
     public Long get(Integer key) {
+        if (key == null) return null;
         int index = tableIndex(key);
-        if ( table[index] != null && table[index].getKey() == key) {
+        if (table[index] != null && table[index].getKey() == key) {
             return table[index].getValue();
         }
         for (int i = index + 1; i < table.length; i++) {
@@ -56,6 +59,7 @@ public class HashMap implements Map<Integer, Long> {
     private int tableIndex(Integer key) {
         return key.hashCode() % table.length;
     }
+
     private boolean isTableFull() {
         return size >= table.length * loadFactor;
     }
@@ -82,8 +86,12 @@ public class HashMap implements Map<Integer, Long> {
         return null;
     }
 
-
-
-
-
+    @Override
+    public String toString() {
+        return "HashMap{" +
+                "table=" + Arrays.toString(table) +
+                '}';
+    }
 }
+
+

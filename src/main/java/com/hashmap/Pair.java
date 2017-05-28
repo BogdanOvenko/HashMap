@@ -18,4 +18,11 @@ public class Pair {
         return value;
     }
 
+    @Override
+    public String toString() {
+        return "Pair{" +
+                "key=" + key +
+                ", value=" + value +
+                '}';
+    }
 }
