@@ -38,20 +38,15 @@ public class HashMap implements Map<Integer, Long> {
 
     public Long get(Integer key) {
         int index = tableIndex(key);
-        try {
-            if (table[index].getKey() == key) {
-                return table[index].getValue();
-            }
-            for (int i = index + 1; i < table.length; i++) {
-                if (table[i].getValue() == key) {
-                    return table[i].getValue();
-                }
-            }
-            return null;
-        } catch (NullPointerException e) {
-            return null;
+        if ( table[index] != null && table[index].getKey() == key) {
+            return table[index].getValue();
         }
-
+        for (int i = index + 1; i < table.length; i++) {
+            if (table[index] != null && table[i].getValue() == key) {
+                return table[i].getValue();
+            }
+        }
+        return null;
     }
 
     public int size() {
